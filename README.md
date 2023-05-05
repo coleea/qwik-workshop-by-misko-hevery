@@ -1,3 +1,8 @@
+# qwik workshop by misko hevery
+
+https://frontendmasters.com/courses/qwik/
+
+
 # Qwik City App ⚡️
 
 - [Qwik Docs](https://qwik.builder.io/)

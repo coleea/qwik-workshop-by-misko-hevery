@@ -13,28 +13,48 @@ interface ListItem {
   text: string;
 }
 
-export const list: ListItem[] = [];
+export const someitem : ListItem[] = [] ; 
+export const useRouteLoader = routeLoader$(() => someitem)
+export const useRouteAction = routeAction$(item => {
+  someitem.push(item)
+},
+zod$({
+  text : z.string().trim().min(1)
+})
+)
 
-export const useListLoader = routeLoader$(() => {
-  return list;
-});
 
-export const useAddToListAction = routeAction$(
-  (item) => {
-    list.push(item);
-    return {
-      success: true,
-    };
-  },
-  zod$({
-    text: z.string().trim().min(1),
-  })
-);
+
+// export const list: ListItem[] = [];
+
+// export const useListLoader = routeLoader$(() => {
+//   return list;
+// });
+
+// export const useAddToListAction = routeAction$(
+//   (item) => {
+//     list.push(item);
+//     return {
+//       success: true,
+//     };
+//   },
+//   zod$({
+//     text: z.string().trim().min(1),
+//   })
+// );
 
 export default component$(() => {
-  const list = useListLoader();
-  const action = useAddToListAction();
+  // const list = useListLoader();
+  const list = useRouteLoader()
+  console.log({list});
+  
+  const action = useRouteAction()
+  // const action = useAddToListAction();
 
+  console.log({action});
+  
+  // const somediv = <div class="container container-center">
+  
   return (
     <>
       <div class="container container-center">
